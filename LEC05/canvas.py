@@ -1,16 +1,4 @@
-## 여기를 채우시오.
-def move_circle():
-    print("circle")
-    pass
-def move_rectangle():
-    print("rect")
-    pass
-def move_triangle():
-    print("triangle")
-    pass
+from pico2d import *
 
-while(True):
-    move_circle()
-    move_rectangle()
-    move_triangle()
-    break
+open_canvas(800, 600)
+character = load_image('character.png')
