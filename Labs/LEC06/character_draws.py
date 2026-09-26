@@ -38,12 +38,17 @@ def move_rectangle():
 def move_triangle():
     movecount=20
     theta=0.0
+    x=400
+    y=300
+    speed=4
     print("triangle")
     for i in range(0,3):
         theta=math.pi*(2/3)
         print("move angle",theta/math.pi)
         for j in range(0, movecount):
-            print("move",i,j)
+            x+=math.cos(theta)*speed
+            y+=math.sin(theta)*speed
+            print("move",x,y)
     pass
 
 while(True):
