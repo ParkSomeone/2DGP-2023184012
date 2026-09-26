@@ -19,7 +19,7 @@ def move_circle():
 
 def move_rectangle():
     print("rect")
-    movecount=0
+    movecount=20
     theta=0.0
     x=400
     y=300
