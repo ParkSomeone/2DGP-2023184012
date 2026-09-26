@@ -53,8 +53,7 @@ def move_triangle():
             clear_canvas()
             character.draw(x, y)
             update_canvas()
-            print("move",x,y)
-    pass
+
 
 while(True):
     move_circle()
