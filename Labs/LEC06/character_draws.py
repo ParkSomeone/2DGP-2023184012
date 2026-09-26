@@ -27,8 +27,12 @@ def move_rectangle():
     for i in range(0,4):
         print("now angle",theta/(math.pi))
         for j in range(0,movecount):
+            delay(0.01)
+            clear_canvas()
             x+=math.cos(theta)*speed
             y+=math.sin(theta)*speed
+            character.draw(x, y)
+            update_canvas()
             print("move",x,y)
         theta += math.pi/2
             
