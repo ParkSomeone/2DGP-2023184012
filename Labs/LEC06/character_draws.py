@@ -21,11 +21,15 @@ def move_rectangle():
     print("rect")
     movecount=30
     theta=0.0
+    x=400
+    y=300
+    speed=10
     for i in range(0,4):
         print("now angle",theta/(math.pi))
         for j in range(0,movecount):
-            print("move",theta/(math.pi),j)
-            pass
+            x+=math.cos(theta)*speed
+            y+=math.sin(theta)*speed
+            print("move",x,y)
         theta += math.pi/2
             
 
