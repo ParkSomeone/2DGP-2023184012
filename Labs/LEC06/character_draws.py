@@ -48,6 +48,11 @@ def move_triangle():
         for j in range(0, movecount):
             x+=math.cos(theta)*speed
             y+=math.sin(theta)*speed
+
+            delay(0.01)
+            clear_canvas()
+            character.draw(x, y)
+            update_canvas()
             print("move",x,y)
     pass
 
