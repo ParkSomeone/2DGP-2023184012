@@ -37,9 +37,10 @@ def move_rectangle():
 
 def move_triangle():
     print("triangle")
-    clear_canvas()
-    character.draw(400, 300)
-    update_canvas()
+    for i in range(0,3):
+        print("move type",i)
+        for j in range(0, 20):
+            print("move",i,j)
     pass
 
 while(True):
