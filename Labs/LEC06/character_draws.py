@@ -43,7 +43,7 @@ def move_triangle():
     speed=4
     print("triangle")
     for i in range(0,3):
-        theta=math.pi*(2/3)
+        theta+=math.pi*(2/3)
         print("move angle",theta/math.pi)
         for j in range(0, movecount):
             x+=math.cos(theta)*speed
