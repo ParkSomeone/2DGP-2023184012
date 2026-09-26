@@ -8,6 +8,7 @@ character = load_image('character.png')
 
 def move_circle():
     print("circle")
+    pass
     theta=0.0
     r=50
     while theta<2*math.pi:
@@ -19,10 +20,12 @@ def move_circle():
 
 def move_rectangle():
     print("rect")
-    clear_canvas()
-    character.draw(400, 300)
-    update_canvas()
-    pass
+    for i in range(0,4):
+        print("movetype",i)
+        for j in range(0,30):
+            print("move",i,j)
+            
+
 def move_triangle():
     print("triangle")
     clear_canvas()
