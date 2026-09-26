@@ -19,11 +19,11 @@ def move_circle():
 
 def move_rectangle():
     print("rect")
-    movecount=30
+    movecount=20
     theta=0.0
     x=400
     y=300
-    speed=10
+    speed=4
     for i in range(0,4):
         print("now angle",theta/(math.pi))
         for j in range(0,movecount):
