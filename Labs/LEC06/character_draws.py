@@ -59,20 +59,22 @@ def move_rectangle():
 
 def draw_one():
     print("one")
-    for i in range(1,101,10):
+    for i in range(0,101,10):
         draw_charater(400-i*3,500-i*4)
-    
+        print(400-i*3,500-i*4)
     pass
 def draw_two():
     print("two")
-    for i in range(1,101,10):
+    for i in range(0,101,10):
         draw_charater(100+i*7,100)
+        print(100+i*7,100)
     pass
 def draw_three():
     print("three")
-    for i in range(1,101,10):
+    for i in range(0,101,10):
         draw_charater(700-i*3,100+i*4)
-        delay(0.1)
+        print(700-i*3,100+i*4)
+    delay(10)
     pass
 
 def move_triangle():
