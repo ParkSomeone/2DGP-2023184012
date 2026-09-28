@@ -65,6 +65,9 @@ def draw_one():
     pass
 def draw_two():
     print("two")
+    for i in range(1,101,10):
+        draw_charater(100+i*7,100)
+        delay(0.1)
     pass
 def draw_three():
     print("three")
