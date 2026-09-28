@@ -17,23 +17,26 @@ def move_circle():
         character.draw(400+math.cos(theta)*50, 300+math.sin(theta)*50)
         update_canvas()
 
-def draw_top():
-    pass
 
-def draw_left():
+def draw_top():
+    print("top")
+    pass
+def draw_right():
+    print("right")
     pass
 def draw_bottom():
+    print("bottom")
     pass
-def draw_tright():
+def draw_left():
+    print("left")
     pass
-
 
 def move_rectangle():
     print("rect")
     draw_top()
-    draw_left()
+    draw_right()
     draw_bottom()
-    draw_tright()
+    draw_left()
     pass
             
 
