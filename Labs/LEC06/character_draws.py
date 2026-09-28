@@ -59,6 +59,9 @@ def move_rectangle():
 
 def draw_one():
     print("one")
+    for i in range(1,101,10):
+        draw_charater(400-i*3,500-i*4)
+    
     pass
 def draw_two():
     print("two")
