@@ -67,7 +67,7 @@ def draw_two():
     print("two")
     for i in range(0,101,10):
         draw_charater(100+i*7,100)
-        print(100+i*7,100)
+        print(100+i*6,100)
     pass
 def draw_three():
     print("three")
