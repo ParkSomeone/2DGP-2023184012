@@ -8,13 +8,12 @@ character = load_image('character.png')
 
 def move_circle():
     print("circle")
-    #circle 확인했으므로 pass
-    return
     theta=0.0
     r=50
     while theta<2*math.pi:
         draw_charater(400+math.cos(theta)*50,300+math.sin(theta)*50)
-
+        theta+=0.1
+    pass
 
 
 def draw_top():
@@ -49,8 +48,6 @@ def draw_left():
 
 def move_rectangle():
     print("rect")
-    #draw_rectangle skip
-    return
     draw_top()
     draw_right()
     draw_bottom()
@@ -61,20 +58,16 @@ def draw_one():
     print("one")
     for i in range(0,101,10):
         draw_charater(400-i*3,500-i*4)
-        print(400-i*3,500-i*4)
     pass
 def draw_two():
     print("two")
     for i in range(0,101,10):
         draw_charater(100+i*7,100)
-        print(100+i*6,100)
     pass
 def draw_three():
     print("three")
     for i in range(0,101,10):
         draw_charater(700-i*3,100+i*4)
-        print(700-i*3,100+i*4)
-    delay(10)
     pass
 
 def move_triangle():
