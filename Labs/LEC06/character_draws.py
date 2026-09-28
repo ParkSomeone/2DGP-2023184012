@@ -8,19 +8,29 @@ character = load_image('character.png')
 
 def move_circle():
     print("circle")
+    #circle 확인했으므로 pass
+    return
     theta=0.0
     r=50
     while theta<2*math.pi:
-        delay(0.01)
-        theta += 0.1
-        clear_canvas()
-        character.draw(400+math.cos(theta)*50, 300+math.sin(theta)*50)
-        update_canvas()
+        draw_charater(400+math.cos(theta)*50,300+math.sin(theta)*50)
+
 
 
 def draw_top():
     print("top")
+    for x in range(50, 751, 5):
+        draw_charater(x,550)
     pass
+
+#코드를 함수로 자동변환 하는방법
+#코드선택->우클릭->refactor->extract function
+def draw_charater(x,y):
+    clear_canvas()
+    character.draw(x, y)
+    update_canvas()
+    delay(0.01)
+
 def draw_right():
     print("right")
     pass
