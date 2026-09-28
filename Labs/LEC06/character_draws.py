@@ -49,12 +49,14 @@ def draw_left():
 
 def move_rectangle():
     print("rect")
+    #draw_rectangle skip
+    return
     draw_top()
     draw_right()
     draw_bottom()
     draw_left()
     pass
-            
+      
 
 def move_triangle():
     print("triangle")
