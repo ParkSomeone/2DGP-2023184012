@@ -67,10 +67,12 @@ def draw_two():
     print("two")
     for i in range(1,101,10):
         draw_charater(100+i*7,100)
-        delay(0.1)
     pass
 def draw_three():
     print("three")
+    for i in range(1,101,10):
+        draw_charater(700-i*3,100+i*4)
+        delay(0.1)
     pass
 
 def move_triangle():
