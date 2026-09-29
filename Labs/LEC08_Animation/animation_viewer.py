@@ -1,5 +1,6 @@
 def handle_events():
-    print('handle_events')
+    events = []
+    print('[handle_events] stage 1: event storage ready')
 
 
 def update():
