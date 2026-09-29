@@ -35,7 +35,12 @@ def render():
     print('render')
 
 
-while True:
+while running:
     handle_events()
+
+    print('[handle_events] stage 7: loop connection checked')
+    if not running:
+        break
+
     update()
     render()
