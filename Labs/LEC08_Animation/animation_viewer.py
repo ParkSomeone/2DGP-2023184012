@@ -13,6 +13,9 @@ def handle_events():
     for event in events:
         print('[handle_events] stage 3: events checked')
 
+        if event.type == SDL_QUIT:
+            print('[handle_events] stage 4: close event checked')
+
 
 def update():
     print('update')
