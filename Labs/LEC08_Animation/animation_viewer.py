@@ -8,6 +8,8 @@ frame = 0
 animations = [[None] * 8]
 current_animation = 0
 animation_repeat = 0
+is_paused = False
+pause_start_time = 0.0
 
 
 def handle_events():
@@ -35,6 +37,7 @@ def handle_events():
 
 def update():
     global last_frame_time, frame, animation_repeat
+    global is_paused, pause_start_time
 
     current_time = get_time()
     print('[update] stage 1: time prepared')
@@ -46,13 +49,19 @@ def update():
         frame_count = len(animations[current_animation])
         print('[update] stage 5: frame count applied')
 
-        frame += 1
-        print('[update] stage 3: frame changed')
+        if not is_paused:
+            frame += 1
+            print('[update] stage 3: frame changed')
 
-        if frame >= frame_count:
-            frame = 0
-            animation_repeat += 1
-            print('[update] stage 4: animation cycle completed')
+            if frame >= frame_count:
+                frame = 0
+                animation_repeat += 1
+                print('[update] stage 4: animation cycle completed')
+
+                if animation_repeat >= 5:
+                    is_paused = True
+                    pause_start_time = current_time
+                    print('[update] stage 6: five repetitions checked')
 
 
 def render():
