@@ -2,6 +2,8 @@ from pico2d import *
 
 open_canvas()
 running = True
+frame_interval = 0.1
+last_frame_time = 0.0
 
 
 def handle_events():
@@ -28,8 +30,14 @@ def handle_events():
 
 
 def update():
+    global last_frame_time
+
     current_time = get_time()
     print('[update] stage 1: time prepared')
+
+    if current_time - last_frame_time >= frame_interval:
+        last_frame_time = current_time
+        print('[update] stage 2: frame interval checked')
 
 
 def render():
