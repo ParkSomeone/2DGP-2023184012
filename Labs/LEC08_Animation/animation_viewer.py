@@ -49,6 +49,14 @@ def update():
         frame_count = len(animations[current_animation])
         print('[update] stage 5: frame count applied')
 
+        if is_paused and current_time - pause_start_time >= 1.0:
+            is_paused = False
+            animation_repeat = 0
+            frame = 0
+            pause_start_time = 0.0
+            print('[update] stage 7: playback resumed')
+            return
+
         if not is_paused:
             frame += 1
             print('[update] stage 3: frame changed')
