@@ -5,7 +5,8 @@ running = True
 frame_interval = 0.1
 last_frame_time = 0.0
 frame = 0
-frame_count = 8
+animations = [[None] * 8]
+current_animation = 0
 animation_repeat = 0
 
 
@@ -41,6 +42,9 @@ def update():
     if current_time - last_frame_time >= frame_interval:
         last_frame_time = current_time
         print('[update] stage 2: frame interval checked')
+
+        frame_count = len(animations[current_animation])
+        print('[update] stage 5: frame count applied')
 
         frame += 1
         print('[update] stage 3: frame changed')
