@@ -5,6 +5,8 @@ running = True
 frame_interval = 0.1
 last_frame_time = 0.0
 frame = 0
+frame_count = 8
+animation_repeat = 0
 
 
 def handle_events():
@@ -31,7 +33,7 @@ def handle_events():
 
 
 def update():
-    global last_frame_time, frame
+    global last_frame_time, frame, animation_repeat
 
     current_time = get_time()
     print('[update] stage 1: time prepared')
@@ -42,6 +44,11 @@ def update():
 
         frame += 1
         print('[update] stage 3: frame changed')
+
+        if frame >= frame_count:
+            frame = 0
+            animation_repeat += 1
+            print('[update] stage 4: animation cycle completed')
 
 
 def render():
