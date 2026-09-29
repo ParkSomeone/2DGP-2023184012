@@ -1,9 +1,12 @@
 from pico2d import *
 
 open_canvas()
+running = True
 
 
 def handle_events():
+    global running
+
     events = []
     print('[handle_events] stage 1: event storage ready')
 
@@ -15,9 +18,13 @@ def handle_events():
 
         if event.type == SDL_QUIT:
             print('[handle_events] stage 4: close event checked')
+            running = False
+            print('[handle_events] stage 6: quit state updated')
 
         if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             print('[handle_events] stage 5: quit key checked')
+            running = False
+            print('[handle_events] stage 6: quit state updated')
 
 
 def update():
