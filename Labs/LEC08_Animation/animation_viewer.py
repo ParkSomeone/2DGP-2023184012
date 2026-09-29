@@ -10,6 +10,9 @@ def handle_events():
     events.extend(get_events())
     print('[handle_events] stage 2: events loaded')
 
+    for event in events:
+        print('[handle_events] stage 3: events checked')
+
 
 def update():
     print('update')
