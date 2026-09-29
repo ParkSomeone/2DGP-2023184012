@@ -16,6 +16,9 @@ def handle_events():
         if event.type == SDL_QUIT:
             print('[handle_events] stage 4: close event checked')
 
+        if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            print('[handle_events] stage 5: quit key checked')
+
 
 def update():
     print('update')
