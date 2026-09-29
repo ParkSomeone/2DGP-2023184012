@@ -28,7 +28,8 @@ def handle_events():
 
 
 def update():
-    print('update')
+    current_time = get_time()
+    print('[update] stage 1: time prepared')
 
 
 def render():
