@@ -96,6 +96,8 @@ def advance_frame(state, current_time):
     cycle_completed = next_frame >= len(frames)
     state.frame_index = 0 if cycle_completed else next_frame
     state.last_frame_change_time = current_time
+    if cycle_completed:
+        state.completed_cycles += 1
     return cycle_completed
 
 
