@@ -85,6 +85,25 @@ def frame_interval_elapsed(state, current_time):
     return current_time >= state.last_frame_change_time + FRAME_INTERVAL_SECONDS
 
 
+def render(sprite_sheet, state):
+    _, frames = ANIMATIONS[state.animation_index]
+    left, top, width, height = frames[state.frame_index]
+    bottom = SPRITE_SHEET_HEIGHT - top - height
+
+    pico2d.clear_canvas()
+    sprite_sheet.clip_draw(
+        left,
+        bottom,
+        width,
+        height,
+        WINDOW_WIDTH // 2,
+        WINDOW_HEIGHT // 2,
+        width,
+        height,
+    )
+    pico2d.update_canvas()
+
+
 def load_sprite_sheet(image_path=SPRITE_PATH):
     if not image_path.is_file():
         raise FileNotFoundError(f"스프라이트 시트를 찾을 수 없습니다: {image_path}")
@@ -106,6 +125,7 @@ def main():
     try:
         sprite_sheet = load_sprite_sheet()
         validate_sprite_sheet_dimensions(sprite_sheet)
+        state = PlaybackState()
         running = True
 
         while running:
@@ -115,7 +135,7 @@ def main():
                     break
 
             if running:
-                pico2d.update_canvas()
+                render(sprite_sheet, state)
                 pico2d.delay(0.01)
     finally:
         pico2d.close_canvas()
