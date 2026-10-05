@@ -7,6 +7,7 @@ import pico2d
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
+FRAME_INTERVAL_SECONDS = 0.1
 SPRITE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 SPRITE_SHEET_WIDTH = 399
 SPRITE_SHEET_HEIGHT = 525
@@ -78,6 +79,10 @@ class PlaybackState:
     last_frame_change_time: float = 0.0
     is_waiting: bool = False
     wait_started_at: float = 0.0
+
+
+def frame_interval_elapsed(state, current_time):
+    return current_time >= state.last_frame_change_time + FRAME_INTERVAL_SECONDS
 
 
 def load_sprite_sheet(image_path=SPRITE_PATH):
