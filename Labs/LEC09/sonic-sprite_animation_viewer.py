@@ -61,7 +61,7 @@ FRAME_BOUNDS_TOP = (
     ),
 )
 
-ANIMATION_FRAMES_TOP = (FRAME_BOUNDS_TOP[0],)
+ANIMATION_FRAMES_TOP = FRAME_BOUNDS_TOP
 
 
 def load_sprite_sheet(image_path=SPRITE_PATH):
