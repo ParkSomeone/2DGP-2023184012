@@ -7,6 +7,7 @@ import pico2d
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
+SCREEN_PADDING = 40
 FRAME_INTERVAL_SECONDS = 0.1
 FRAME_TIME_EPSILON_SECONDS = 1e-9
 CYCLES_PER_ANIMATION = 5
@@ -132,10 +133,21 @@ def transition_to_next_animation(state, current_time):
     return True
 
 
+def calculate_draw_size(width, height):
+    if width <= 0 or height <= 0:
+        raise ValueError("프레임 너비와 높이는 양수여야 합니다.")
+
+    available_width = WINDOW_WIDTH - 2 * SCREEN_PADDING
+    available_height = WINDOW_HEIGHT - 2 * SCREEN_PADDING
+    scale = min(available_width / width, available_height / height)
+    return round(width * scale), round(height * scale)
+
+
 def render(sprite_sheet, state):
     _, frames = ANIMATIONS[state.animation_index]
     left, top, width, height = frames[state.frame_index]
     bottom = SPRITE_SHEET_HEIGHT - top - height
+    draw_width, draw_height = calculate_draw_size(width, height)
 
     pico2d.clear_canvas()
     sprite_sheet.clip_draw(
@@ -145,8 +157,8 @@ def render(sprite_sheet, state):
         height,
         WINDOW_WIDTH // 2,
         WINDOW_HEIGHT // 2,
-        width,
-        height,
+        draw_width,
+        draw_height,
     )
     pico2d.update_canvas()
 
