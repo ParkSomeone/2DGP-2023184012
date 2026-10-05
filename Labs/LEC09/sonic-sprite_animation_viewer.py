@@ -122,10 +122,8 @@ def wait_period_elapsed(state, current_time):
 def transition_to_next_animation(state, current_time):
     if not wait_period_elapsed(state, current_time):
         return False
-    if state.animation_index + 1 >= len(ANIMATIONS):
-        return False
 
-    state.animation_index += 1
+    state.animation_index = (state.animation_index + 1) % len(ANIMATIONS)
     state.frame_index = 0
     state.completed_cycles = 0
     state.last_frame_change_time = current_time
