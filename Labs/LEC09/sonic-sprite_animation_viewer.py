@@ -133,6 +133,12 @@ def transition_to_next_animation(state, current_time):
     return True
 
 
+def update_playback(state, current_time):
+    if state.is_waiting:
+        return transition_to_next_animation(state, current_time)
+    return advance_frame(state, current_time)
+
+
 def calculate_animation_scale(frames):
     if not frames:
         raise ValueError("애니메이션에 프레임이 없습니다.")
@@ -201,10 +207,7 @@ def main():
 
             if running:
                 current_time = pico2d.get_time()
-                if state.is_waiting:
-                    transition_to_next_animation(state, current_time)
-                else:
-                    advance_frame(state, current_time)
+                update_playback(state, current_time)
                 render(sprite_sheet, state)
                 pico2d.delay(0.01)
     finally:
