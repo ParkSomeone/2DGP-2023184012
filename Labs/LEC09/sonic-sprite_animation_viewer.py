@@ -192,6 +192,7 @@ def validate_sprite_sheet_dimensions(sprite_sheet):
 
 def main():
     pico2d.open_canvas(WINDOW_WIDTH, WINDOW_HEIGHT)
+    sprite_sheet = None
     try:
         sprite_sheet = load_sprite_sheet()
         validate_sprite_sheet_dimensions(sprite_sheet)
@@ -211,6 +212,8 @@ def main():
                 render(sprite_sheet, state)
                 pico2d.delay(0.01)
     finally:
+        if sprite_sheet is not None:
+            del sprite_sheet
         pico2d.close_canvas()
 
 
