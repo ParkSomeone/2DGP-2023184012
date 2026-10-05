@@ -1,9 +1,12 @@
 """Single-file Pico2D viewer for the Sonic sprite sheet in this directory."""
 
+from pathlib import Path
+
 import pico2d
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
+SPRITE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 
 
 def main():
