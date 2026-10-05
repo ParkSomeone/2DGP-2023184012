@@ -133,21 +133,26 @@ def transition_to_next_animation(state, current_time):
     return True
 
 
-def calculate_draw_size(width, height):
-    if width <= 0 or height <= 0:
-        raise ValueError("프레임 너비와 높이는 양수여야 합니다.")
+def calculate_animation_scale(frames):
+    if not frames:
+        raise ValueError("애니메이션에 프레임이 없습니다.")
 
+    max_width = max(frame[2] for frame in frames)
+    max_height = max(frame[3] for frame in frames)
+    if max_width <= 0 or max_height <= 0:
+        raise ValueError("프레임 너비와 높이는 양수여야 합니다.")
     available_width = WINDOW_WIDTH - 2 * SCREEN_PADDING
     available_height = WINDOW_HEIGHT - 2 * SCREEN_PADDING
-    scale = min(available_width / width, available_height / height)
-    return round(width * scale), round(height * scale)
+    return min(available_width / max_width, available_height / max_height)
 
 
 def render(sprite_sheet, state):
     _, frames = ANIMATIONS[state.animation_index]
     left, top, width, height = frames[state.frame_index]
     bottom = SPRITE_SHEET_HEIGHT - top - height
-    draw_width, draw_height = calculate_draw_size(width, height)
+    scale = calculate_animation_scale(frames)
+    draw_width = round(width * scale)
+    draw_height = round(height * scale)
 
     pico2d.clear_canvas()
     sprite_sheet.clip_draw(
