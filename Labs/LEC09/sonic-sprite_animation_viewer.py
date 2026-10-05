@@ -62,6 +62,11 @@ FRAME_BOUNDS_TOP = (
 )
 
 ANIMATION_FRAMES_TOP = FRAME_BOUNDS_TOP
+ANIMATION_ORDER = (
+    "동작 1", "동작 2", "동작 3", "동작 4", "동작 5",
+    "동작 6", "동작 7", "동작 8", "동작 9", "동작 10",
+)
+ANIMATIONS = tuple(zip(ANIMATION_ORDER, ANIMATION_FRAMES_TOP))
 
 
 def load_sprite_sheet(image_path=SPRITE_PATH):
