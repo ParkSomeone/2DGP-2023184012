@@ -119,6 +119,21 @@ def wait_period_elapsed(state, current_time):
     return current_time + FRAME_TIME_EPSILON_SECONDS >= wait_end_time
 
 
+def transition_to_next_animation(state, current_time):
+    if not wait_period_elapsed(state, current_time):
+        return False
+    if state.animation_index + 1 >= len(ANIMATIONS):
+        return False
+
+    state.animation_index += 1
+    state.frame_index = 0
+    state.completed_cycles = 0
+    state.last_frame_change_time = current_time
+    state.is_waiting = False
+    state.wait_started_at = 0.0
+    return True
+
+
 def render(sprite_sheet, state):
     _, frames = ANIMATIONS[state.animation_index]
     left, top, width, height = frames[state.frame_index]
@@ -170,7 +185,11 @@ def main():
                     break
 
             if running:
-                advance_frame(state, pico2d.get_time())
+                current_time = pico2d.get_time()
+                if state.is_waiting:
+                    transition_to_next_animation(state, current_time)
+                else:
+                    advance_frame(state, current_time)
                 render(sprite_sheet, state)
                 pico2d.delay(0.01)
     finally:
