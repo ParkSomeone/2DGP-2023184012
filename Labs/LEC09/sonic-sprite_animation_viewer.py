@@ -8,6 +8,7 @@ import pico2d
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
 FRAME_INTERVAL_SECONDS = 0.1
+FRAME_TIME_EPSILON_SECONDS = 1e-9
 SPRITE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 SPRITE_SHEET_WIDTH = 399
 SPRITE_SHEET_HEIGHT = 525
@@ -82,7 +83,20 @@ class PlaybackState:
 
 
 def frame_interval_elapsed(state, current_time):
-    return current_time >= state.last_frame_change_time + FRAME_INTERVAL_SECONDS
+    next_frame_time = state.last_frame_change_time + FRAME_INTERVAL_SECONDS
+    return current_time + FRAME_TIME_EPSILON_SECONDS >= next_frame_time
+
+
+def advance_frame(state, current_time):
+    if not frame_interval_elapsed(state, current_time):
+        return False
+
+    frames = ANIMATIONS[state.animation_index][1]
+    next_frame = state.frame_index + 1
+    cycle_completed = next_frame >= len(frames)
+    state.frame_index = 0 if cycle_completed else next_frame
+    state.last_frame_change_time = current_time
+    return cycle_completed
 
 
 def render(sprite_sheet, state):
@@ -126,6 +140,7 @@ def main():
         sprite_sheet = load_sprite_sheet()
         validate_sprite_sheet_dimensions(sprite_sheet)
         state = PlaybackState()
+        state.last_frame_change_time = pico2d.get_time()
         running = True
 
         while running:
@@ -135,6 +150,7 @@ def main():
                     break
 
             if running:
+                advance_frame(state, pico2d.get_time())
                 render(sprite_sheet, state)
                 pico2d.delay(0.01)
     finally:
