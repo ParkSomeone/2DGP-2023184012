@@ -10,6 +10,7 @@ WINDOW_HEIGHT = 600
 FRAME_INTERVAL_SECONDS = 0.1
 FRAME_TIME_EPSILON_SECONDS = 1e-9
 CYCLES_PER_ANIMATION = 5
+WAIT_SECONDS = 1.0
 SPRITE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 SPRITE_SHEET_WIDTH = 399
 SPRITE_SHEET_HEIGHT = 525
@@ -109,6 +110,13 @@ def advance_frame(state, current_time):
         state.frame_index = next_frame
     state.last_frame_change_time = current_time
     return cycle_completed
+
+
+def wait_period_elapsed(state, current_time):
+    if not state.is_waiting:
+        return False
+    wait_end_time = state.wait_started_at + WAIT_SECONDS
+    return current_time + FRAME_TIME_EPSILON_SECONDS >= wait_end_time
 
 
 def render(sprite_sheet, state):
