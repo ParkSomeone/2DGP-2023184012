@@ -1,5 +1,6 @@
 """Single-file Pico2D viewer for the Sonic sprite sheet in this directory."""
 
+from dataclasses import dataclass
 from pathlib import Path
 
 import pico2d
@@ -67,6 +68,16 @@ ANIMATION_ORDER = (
     "동작 6", "동작 7", "동작 8", "동작 9", "동작 10",
 )
 ANIMATIONS = tuple(zip(ANIMATION_ORDER, ANIMATION_FRAMES_TOP))
+
+
+@dataclass
+class PlaybackState:
+    animation_index: int = 0
+    frame_index: int = 0
+    completed_cycles: int = 0
+    last_frame_change_time: float = 0.0
+    is_waiting: bool = False
+    wait_started_at: float = 0.0
 
 
 def load_sprite_sheet(image_path=SPRITE_PATH):
