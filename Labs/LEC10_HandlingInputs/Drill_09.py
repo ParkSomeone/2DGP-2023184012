@@ -17,10 +17,29 @@ y = WINDOW_HEIGHT // 2
 frame = 0
 move_x = 0
 move_y = 0
+direction = 'down'
 
 
 def clamp(value, minimum, maximum):
     return max(minimum, min(value, maximum))
+
+
+def get_move_row():
+    global direction
+    if move_x > 0:
+        direction = 'right'
+        return 200
+    if move_x < 0:
+        direction = 'left'
+        return 100
+    if move_y > 0:
+        direction = 'up'
+        return 0
+    if move_y < 0:
+        direction = 'down'
+        return 300
+    direction = 'idle'
+    return 300
 
 
 def handle_events():
@@ -54,7 +73,13 @@ def handle_events():
 while running:
     clear_canvas()
     tuk_ground.draw(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
-    character.clip_draw(frame * SPRITE_SIZE, 300, SPRITE_SIZE, SPRITE_SIZE, x, y)
+
+    if move_x == 0 and move_y == 0:
+        row = 300
+    else:
+        row = get_move_row()
+
+    character.clip_draw(frame * SPRITE_SIZE, row, SPRITE_SIZE, SPRITE_SIZE, x, y)
     update_canvas()
     handle_events()
 
