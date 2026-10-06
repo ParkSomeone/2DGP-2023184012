@@ -43,7 +43,7 @@ def main():
         return 300
 
     def handle_events():
-        nonlocal running, move_x, move_y
+        global running, move_x, move_y
         events = get_events()
         for event in events:
             if event.type == SDL_QUIT:
