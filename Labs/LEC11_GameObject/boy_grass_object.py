@@ -26,21 +26,6 @@ class Boy:
         pass
     pass
 
-class Zombie:
-    def  __init__(self):
-        self.image=load_image('zombie_run_animation.png')
-        self.frame=0
-        self.x, self.y = random.randint(-200, 300), 180
-        self.frame_width = self.image.w // 10
-        self.frame_height = self.image.h
-    def update(self):
-        self.frame=(self.frame+1)%8
-        self.x+=3
-    def draw(self):
-        self.image.clip_draw(self.frame * self.frame_width, 0, self.frame_width, self.frame_height,
-                             self.x, self.y, self.frame_width // 2, self.frame_height // 2)
-        pass
-    pass
 
 def handle_events():
     global running
@@ -61,8 +46,6 @@ def reset_world():
     world.append(grass)
     team=[Boy()for i in range(11)]  #11명의 객체생성 후 team리스트에 넣는다
     world+=team                     #world리스트에 team리스트를 합친다
-    zoms=[Zombie() for i in range(20)]
-    world+=zoms
 
 def update_world():
     for o in world:
