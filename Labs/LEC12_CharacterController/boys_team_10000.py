@@ -1,6 +1,7 @@
 from pico2d import *
 import random
-
+import turtle
+#모듈을 우클릭 후 go to definition을 하면 해당 모듈의 정의를 볼 수 있다.
 
 # Game object class here
 
