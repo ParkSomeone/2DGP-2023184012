@@ -16,10 +16,15 @@ class Grass:
 
 
 class Boy:
+    #class 변수 image선언
+    image=None
     def __init__(self):
         self.x, self.y = random.randint(0, 800), 90
         self.frame = random.randint(0, 7)
-        self.image = load_image('run_animation.png')
+        #self변수: 객체의 변수, (객체명)변수: 클래스 변수
+        #생성된 class변수는 모든 객체가 공유한다.
+        if Boy.image==None:
+            Boy.image = load_image('run_animation.png')
 
     def update(self):
         self.frame = (self.frame + 1) % 8
@@ -47,7 +52,7 @@ def reset_world():
     grass = Grass()
     world.append(grass)
 
-    team = [Boy() for i in range(10)]
+    team = [Boy() for i in range(10000)]
     world += team
 
 
@@ -73,6 +78,6 @@ while running:
     handle_events()
     update_world()
     render_world()
-    delay(0.05)
+#    delay(0.05)
 # finalization code
 close_canvas()
