@@ -26,6 +26,8 @@ class Boy:
         pass
     pass
 
+class Ball:
+    pass
 
 def handle_events():
     global running
@@ -45,6 +47,7 @@ def reset_world():
     grass = Grass()
     world.append(grass)
     team=[Boy()for i in range(11)]  #11명의 객체생성 후 team리스트에 넣는다
+    balls=[Ball()for i in range(20)]
     world+=team                     #world리스트에 team리스트를 합친다
 
 def update_world():
